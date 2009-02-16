@@ -1,0 +1,49 @@
+--- origsrc/lxpanel-0.3.8.1/src/plugin.c	2009-02-15 22:48:32.187500000 -0600
++++ src/lxpanel-0.3.8.1/src/plugin.c	2009-02-15 22:48:21.171875000 -0600
+@@ -178,7 +178,7 @@ plugin_load_dynamic( const char* type, c
+          || (pc = tmpsym) == NULL
+          || strcmp(type, pc->type)) {
+         g_module_close(m);
+-        ERR("%s.so is not a lxpanel plugin\n", type);
++        ERR("%s.%s is not a lxpanel plugin\n", type, G_MODULE_SUFFIX);
+         RET(NULL);
+     }
+     pc->gmodule = m;
+@@ -206,11 +206,11 @@ plugin_load(char *type)
+     else if ( g_module_supported() ) {
+         char* path[ PATH_MAX ];
+ #if 0   /* put plugins in config dir is too dirty... */
+-        g_snprintf(path, PATH_MAX, "%s/.lxpanel/plugins/%s.so", getenv("HOME"), type);
++        g_snprintf(path, PATH_MAX, "%s/.lxpanel/plugins/%s.%s", getenv("HOME"), type, G_MODULE_SUFFIX);
+         pc = plugin_load_dynamic( type, path );
+ #endif
+         if( !pc ) {
+-            g_snprintf(path, PATH_MAX, PACKAGE_LIB_DIR "/lxpanel/plugins/%s.so", type);
++            g_snprintf(path, PATH_MAX, PACKAGE_LIB_DIR "/lxpanel/plugins/%s.%s", type, G_MODULE_SUFFIX);
+             pc = plugin_load_dynamic( type, path );
+         }
+     }
+@@ -314,9 +314,9 @@ GList* plugin_get_available_classes()
+         while( file = g_dir_read_name( dir ) ) {
+             GModule *m;
+             char* type;
+-            if( ! g_str_has_suffix( file, ".so" ) )
++            if( ! g_str_has_suffix( file, "."G_MODULE_SUFFIX ) )
+                   continue;
+-            type = g_strndup( file, strlen(file) - 3 );
++            type = g_strndup( file, strlen(file) - strlen("."G_MODULE_SUFFIX) );
+             l = plugin_find_class( type );
+             if( l == NULL ) { /* If it has not been loaded */
+                 path = g_build_filename( dir_path, file, NULL );
+@@ -336,9 +336,9 @@ GList* plugin_get_available_classes()
+         while( file = g_dir_read_name( dir ) ) {
+             GModule *m;
+             char* type;
+-            if( ! g_str_has_suffix( file, ".so" ) )
++            if( ! g_str_has_suffix( file, "."G_MODULE_SUFFIX ) )
+                   continue;
+-            type = g_strndup( file, strlen(file) - 3 );
++            type = g_strndup( file, strlen(file) - strlen("."G_MODULE_SUFFIX) );
+             l = plugin_find_class( type );
+             if( l == NULL ) { /* If it has not been loaded */
+                 path = g_build_filename( PACKAGE_LIB_DIR "/lxpanel/plugins", file, NULL );

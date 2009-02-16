@@ -1,0 +1,131 @@
+lxpanel
+------------------------------------------
+Lightweight X11 Desktop Environment panel
+
+Runtime requirements:
+  cygwin-1.5.25-15
+  libgdk_pixbuf2.0_0-2.14.7-2
+  libglib2.0_0-2.18.4-1
+  libgtk2.0_0-2.14.7-2
+  libintl8-0.17-2
+  libX11_6-1.1.5-2
+
+Build requirements:
+(besides corresponding -devel packages)
+  autoconf2.5-2.63-1
+  automake1.10-1.10.1-2
+  binutils-20080624-2
+  cygport-0.4.3-1
+  gawk-3.1.6-1
+  gcc-core-3.4.4-3
+  gnome-common-2.24.0-1
+  intltool-0.40.5-1
+  libtool-2.2.6a-1
+  make-3.81-1
+  pkg-config-0.23a-2
+  sed-4.1.5-2
+
+Canonical website:
+  http://lxde.org/
+
+Canonical download:
+  http://downloads.sourceforge.net/lxde/
+
+-------------------------------------------
+
+Build instructions:
+  unpack lxpanel-0.3.8.1-X-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./lxpanel-0.3.8.1-X.cygport all
+
+This will create:
+  /usr/src/lxpanel-0.3.8.1-X-src.tar.bz2
+  /usr/src/lxpanel-0.3.8.1-X.tar.bz2
+
+-------------------------------------------
+
+Files included in the binary package:
+
+  /usr/bin/lxpanel.exe
+  /usr/bin/lxpanelctl.exe
+  /usr/lib/lxpanel/plugins/cpu.dll
+  /usr/lib/lxpanel/plugins/deskno.dll
+  /usr/lib/lxpanel/plugins/kbled.dll
+  /usr/lib/lxpanel/plugins/volume.dll
+  /usr/share/doc/lxpanel-0.3.8.1/ABOUT-NLS
+  /usr/share/doc/lxpanel-0.3.8.1/AUTHORS
+  /usr/share/doc/lxpanel-0.3.8.1/COPYING
+  /usr/share/doc/lxpanel-0.3.8.1/ChangeLog
+  /usr/share/doc/lxpanel-0.3.8.1/INSTALL
+  /usr/share/doc/lxpanel-0.3.8.1/README
+  /usr/share/locale/de/LC_MESSAGES/lxpanel.mo
+  /usr/share/locale/es/LC_MESSAGES/lxpanel.mo
+  /usr/share/locale/fi/LC_MESSAGES/lxpanel.mo
+  /usr/share/locale/fr/LC_MESSAGES/lxpanel.mo
+  /usr/share/locale/hu/LC_MESSAGES/lxpanel.mo
+  /usr/share/locale/ko/LC_MESSAGES/lxpanel.mo
+  /usr/share/locale/pl/LC_MESSAGES/lxpanel.mo
+  /usr/share/locale/pt_BR/LC_MESSAGES/lxpanel.mo
+  /usr/share/locale/sk/LC_MESSAGES/lxpanel.mo
+  /usr/share/locale/zh_TW/LC_MESSAGES/lxpanel.mo
+  /usr/share/lxpanel/images/background.png
+  /usr/share/lxpanel/images/capslock-off.png
+  /usr/share/lxpanel/images/capslock-on.png
+  /usr/share/lxpanel/images/file-manager.png
+  /usr/share/lxpanel/images/gnome-applications.png
+  /usr/share/lxpanel/images/gnome-control-center.png
+  /usr/share/lxpanel/images/gnome-devel.png
+  /usr/share/lxpanel/images/gnome-fs-desktop.png
+  /usr/share/lxpanel/images/gnome-globe.png
+  /usr/share/lxpanel/images/gnome-graphics.png
+  /usr/share/lxpanel/images/gnome-joystick.png
+  /usr/share/lxpanel/images/gnome-logout.png
+  /usr/share/lxpanel/images/gnome-multimedia.png
+  /usr/share/lxpanel/images/gnome-netstatus-0-24.png
+  /usr/share/lxpanel/images/gnome-netstatus-25-49.png
+  /usr/share/lxpanel/images/gnome-netstatus-50-74.png
+  /usr/share/lxpanel/images/gnome-netstatus-75-100.png
+  /usr/share/lxpanel/images/gnome-netstatus-disconn.png
+  /usr/share/lxpanel/images/gnome-netstatus-error.png
+  /usr/share/lxpanel/images/gnome-netstatus-idle.png
+  /usr/share/lxpanel/images/gnome-netstatus-rx.png
+  /usr/share/lxpanel/images/gnome-netstatus-tx.png
+  /usr/share/lxpanel/images/gnome-netstatus-txrx.png
+  /usr/share/lxpanel/images/gnome-setting.png
+  /usr/share/lxpanel/images/gnome-settings.png
+  /usr/share/lxpanel/images/gnome-system.png
+  /usr/share/lxpanel/images/gnome-util.png
+  /usr/share/lxpanel/images/mute.png
+  /usr/share/lxpanel/images/my-computer.png
+  /usr/share/lxpanel/images/ns-bothrs.png
+  /usr/share/lxpanel/images/ns-connected.png
+  /usr/share/lxpanel/images/ns-disconnect.png
+  /usr/share/lxpanel/images/ns-lock.png
+  /usr/share/lxpanel/images/ns-problem.png
+  /usr/share/lxpanel/images/ns-recvdata.png
+  /usr/share/lxpanel/images/ns-senddata.png
+  /usr/share/lxpanel/images/numlock-off.png
+  /usr/share/lxpanel/images/numlock-on.png
+  /usr/share/lxpanel/images/redhat-internet.png
+  /usr/share/lxpanel/images/scrllock-off.png
+  /usr/share/lxpanel/images/scrllock-on.png
+  /usr/share/lxpanel/images/stock_volume.png
+  /usr/share/lxpanel/images/volume.png
+  /usr/share/lxpanel/profile/default/config
+  /usr/share/lxpanel/profile/default/panels/panel
+  /usr/share/lxpanel/ui/panel-pref.glade
+  /usr/share/man/man1/lxpanel.1.gz
+  /usr/share/man/man1/lxpanelctl.1.gz
+
+------------------
+
+Port Notes:
+
+----- version 0.3.8.1-1 -----
+Initial release for Cygwin.
+
+
+Cygwin port maintained by:
+http://sourceware.org/cygwinports/
