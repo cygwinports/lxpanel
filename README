@@ -9,6 +9,7 @@ Runtime requirements:
   libglib2.0_0-2.20.3-1
   libgtk2.0_0-2.16.2-1
   libintl8-0.17-11
+  libmenu-cache0-0.2.5-1
   libX11_6-1.2-10
 
 Build requirements:

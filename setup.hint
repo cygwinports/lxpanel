@@ -1,4 +1,4 @@
 category: X11
-requires: libgcc1 libgdk_pixbuf2.0_0 libglib2.0_0 libgtk2.0_0 libintl8 libX11_6
+requires: libgcc1 libgdk_pixbuf2.0_0 libglib2.0_0 libgtk2.0_0 libintl8 libmenu-cache0 libX11_6
 sdesc: "LXDE panel"
 ldesc: "Lightweight X11 Desktop Environment panel"
