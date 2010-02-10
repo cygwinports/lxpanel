@@ -4,13 +4,13 @@ DESCRIPTION="LXDE panel"
 HOMEPAGE="http://lxde.org/"
 SRC_URI="mirror://sourceforge/lxde/${P}.tar.gz"
 PATCH_URI="
-	0.3.8.1-plugin-loader.patch
+	0.5.4.1-plugin-loader.patch
 	0.4.1-plugins-no-undefined.patch
-	0.3.8.1-plugins-includes.patch
+	0.5.4.1-volume-oss.patch
 "
 
 CYGCONF_ARGS="
 	--disable-alsa
 	--disable-libiw
-	--with-plugins=cpu,deskno,kbled,volume
+	--with-plugins=cpu,deskno,kbled,volume,xkb
 "
