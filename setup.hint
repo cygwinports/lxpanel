@@ -1,4 +1,0 @@
-category: X11
-requires: libgdk_pixbuf2.0_0 libglib2.0_0 libgtk2.0_0 libintl8 libmenu-cache1 libX11_6 lxmenu-data
-sdesc: "LXDE panel"
-ldesc: "Lightweight X11 Desktop Environment panel"

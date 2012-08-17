@@ -1,6 +1,8 @@
 inherit gnome2
 
-DESCRIPTION="LXDE panel"
+CATEGORY="LXDE"
+SUMMARY="LXDE panel"
+DESCRIPTION="Lightweight X11 Desktop Environment panel"
 HOMEPAGE="http://lxde.org/"
 SRC_URI="mirror://sourceforge/lxde/${P}.tar.gz"
 PATCH_URI="
@@ -12,5 +14,6 @@ PATCH_URI="
 CYGCONF_ARGS="
 	--disable-alsa
 	--disable-libiw
-	--with-plugins=cpu,deskno,kbled,volume,xkb
+	--with-plugins=cpu,deskno,kbled,monitors,volume,wnckpager,xkb
 "
+KEEP_LA_FILES="none"
