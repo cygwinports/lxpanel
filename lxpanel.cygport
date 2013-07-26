@@ -2,7 +2,7 @@ inherit gnome2
 
 NAME="lxpanel"
 VERSION=0.5.12
-RELEASE=1
+RELEASE=2
 CATEGORY="LXDE"
 SUMMARY="LXDE panel"
 DESCRIPTION="Lightweight X11 Desktop Environment panel"
@@ -13,6 +13,10 @@ PATCH_URI="
 	0.4.1-plugins-no-undefined.patch
 	0.5.4.1-volume-oss.patch
 "
+
+PKG_NAMES="${NAME} ${NAME}-devel"
+lxpanel_CONTENTS="usr/bin/ usr/lib/lxpanel/ usr/share/"
+lxpanel_devel_CONTENTS="usr/include/ usr/lib/lib* usr/lib/pkgconfig/"
 
 CYGCONF_ARGS="
 	--disable-alsa

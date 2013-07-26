@@ -5,10 +5,18 @@
  LXPANEL_MODULE="-avoid-version \
  -rpath \$(libdir)/lxpanel/plugins \
 --no-undefined "'-export-symbols-regex "^[[^_]].*"'
-+-no-undefined -Wl,\$(top_builddir)/src/liblxpanel.a "'-export-symbols-regex "^[[^_]].*"'
++-no-undefined -Wl,\$(top_builddir)/src/liblxpanel.dll.a "'-export-symbols-regex "^[[^_]].*"'
  AC_SUBST(LXPANEL_MODULE)
  
  AC_ARG_ENABLE([alsa],
+--- origsrc/lxpanel-0.5.12/lxpanel.pc.in	2012-04-17 07:53:16.000000000 -0500
++++ src/lxpanel-0.5.12/lxpanel.pc.in	2013-07-25 21:40:40.156722400 -0500
+@@ -8,3 +8,5 @@ Name: lxpanel
+ Description: A lightweight X11 desktop panel
+ Requires: glib-2.0 libmenu-cache
+ Version: @VERSION@
++Cflags: -I${includedir}
++Libs: -L${libdir} -llxpanel
 --- origsrc/lxpanel-0.4.1/src/Makefile.am
 +++ src/lxpanel-0.4.1/src/Makefile.am
 @@ -1,6 +1,6 @@
@@ -24,14 +32,18 @@
  
  if BUILD_PLUGIN_LOADER
 -DYNAMIC_FLAGS = -export-dynamic
-+DYNAMIC_FLAGS = -Wl,--export-all-symbols -Wl,--out-implib,liblxpanel.a
++DYNAMIC_FLAGS = -Wl,--export-all-symbols -Wl,--out-implib,liblxpanel.dll.a
  lxpanel_includedir = $(includedir)/lxpanel
  lxpanel_include_HEADERS = $(top_srcdir)/include/lxpanel/plugin.h
  endif
-@@ -63,3 +63,6 @@ lxpanelctl_LDADD = -lX11 $(INTLLIBS)
+@@ -63,3 +63,10 @@ lxpanelctl_LDADD = -lX11 $(INTLLIBS)
  
  EXTRA_DIST = \
  	plugins/icon.xpm
 +
 +$(top_builddir)/src/plugins/libbuiltin_plugins.a:
 +	cd $(@D); $(MAKE) $(@F)
++
++install-exec-local:
++	$(MKDIR_P) $(DESTDIR)$(libdir)
++	$(INSTALL_DATA) liblxpanel.dll.a $(DESTDIR)$(libdir)/liblxpanel.dll.a
