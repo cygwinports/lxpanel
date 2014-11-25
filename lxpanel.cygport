@@ -1,21 +1,22 @@
 inherit gnome2
 
 NAME="lxpanel"
-VERSION=0.6.1
+VERSION=0.7.2
 RELEASE=1
 CATEGORY="LXDE"
 SUMMARY="LXDE panel"
 DESCRIPTION="Lightweight X11 Desktop Environment panel"
 HOMEPAGE="http://lxde.org/"
-SRC_URI="mirror://sourceforge/lxde/${NAME}-${VERSION}.tar.gz"
+SRC_URI="mirror://sourceforge/lxde/${NAME}-${VERSION}.tar.xz"
 PATCH_URI="
-	0.5.4.1-plugin-loader.patch
-	0.4.1-plugins-no-undefined.patch
+	0.7.2-plugin-loader.patch
+	0.7.2-plugins-no-undefined.patch
 	0.5.4.1-volume-oss.patch
 "
 
 PKG_NAMES="${NAME} ${NAME}-devel"
-lxpanel_CONTENTS="usr/bin/ usr/lib/lxpanel/ usr/share/"
+lxpanel_REQUIRES="lxmenu-data"
+lxpanel_CONTENTS="etc/ usr/bin/ usr/lib/lxpanel/ usr/share/"
 lxpanel_devel_CONTENTS="usr/include/ usr/lib/lib* usr/lib/pkgconfig/"
 
 CYGCONF_ARGS="
