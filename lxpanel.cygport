@@ -22,5 +22,5 @@ lxpanel_devel_CONTENTS="usr/include/ usr/lib/lib* usr/lib/pkgconfig/"
 CYGCONF_ARGS="
 	--disable-alsa
 	--disable-libiw
-	--with-plugins=cpu,deskno,kbled,monitors,volume,wnckpager,xkb
+	--with-plugins=cpu,deskno,kbled,monitors,volume,weather,xkb
 "
