@@ -1,0 +1,14 @@
+Leave this to cygport
+
+--- origsrc/lxpanel-0.8.2/plugins/Makefile.am	2015-05-06 14:44:51.000000000 -0500
++++ src/lxpanel-0.8.2/plugins/Makefile.am	2016-11-08 19:24:15.628131100 -0600
+@@ -330,9 +330,6 @@ EXTRA_DIST = \
+ 	$(xkeyboardconfig_DATA) \
+ 	icon.xpm
+ 
+-install-exec-hook:
+-	rm -f $(DESTDIR)$(libdir)/lxpanel/plugins/*.la
+-
+ if BUILD_PLUGIN_LOADER
+ DYNAMIC_PLUGINS_INSTALLED = $(DYNAMIC_PLUGINS:.la=.so)
+ uninstall-hook:

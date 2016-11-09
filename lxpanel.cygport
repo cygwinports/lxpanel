@@ -1,7 +1,7 @@
 inherit gnome2
 
 NAME="lxpanel"
-VERSION=0.7.2
+VERSION=0.8.2
 RELEASE=1
 CATEGORY="LXDE"
 SUMMARY="LXDE panel"
@@ -10,14 +10,14 @@ HOMEPAGE="http://lxde.org/"
 SRC_URI="mirror://sourceforge/lxde/${NAME}-${VERSION}.tar.xz"
 PATCH_URI="
 	0.7.2-plugin-loader.patch
-	0.7.2-plugins-no-undefined.patch
-	0.5.4.1-volume-oss.patch
+	0.8.2-as-needed.patch
+	0.8.2-libtool-install.patch
 "
 
 PKG_NAMES="${NAME} ${NAME}-devel"
 lxpanel_REQUIRES="lxmenu-data"
-lxpanel_CONTENTS="etc/ usr/bin/ usr/lib/lxpanel/ usr/share/"
-lxpanel_devel_CONTENTS="usr/include/ usr/lib/lib* usr/lib/pkgconfig/"
+lxpanel_CONTENTS="etc/ usr/bin/ usr/lib/lxpanel/plugins/ usr/share/"
+lxpanel_devel_CONTENTS="usr/include/ usr/lib/lxpanel/lib* usr/lib/pkgconfig/"
 
 CYGCONF_ARGS="
 	--disable-alsa

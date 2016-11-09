@@ -1,0 +1,12 @@
+--- origsrc/lxpanel-0.8.2/src/Makefile.am	2015-07-14 04:07:22.000000000 -0500
++++ src/lxpanel-0.8.2/src/Makefile.am	2016-11-08 19:06:29.697280000 -0600
+@@ -62,8 +62,8 @@ endif
+ lxpanel_LDFLAGS = $(DYNAMIC_FLAGS)
+ 
+ lxpanel_LDADD = \
+-		liblxpanel.la \
+ 		$(BUILTIN_PLUGINS) \
++		liblxpanel.la \
+ 		$(PACKAGE_LIBS) \
+ 		$(X11_LIBS)
+ 
