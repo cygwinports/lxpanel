@@ -2,25 +2,29 @@ inherit gnome2
 
 NAME="lxpanel"
 VERSION=0.8.2
-RELEASE=1
+RELEASE=2
 CATEGORY="LXDE"
 SUMMARY="LXDE panel"
 DESCRIPTION="Lightweight X11 Desktop Environment panel"
 HOMEPAGE="http://lxde.org/"
 SRC_URI="mirror://sourceforge/lxde/${NAME}-${VERSION}.tar.xz"
 PATCH_URI="
-	0.7.2-plugin-loader.patch
 	0.8.2-as-needed.patch
 	0.8.2-libtool-install.patch
+	0.8.2-plugin-loader.patch
 "
 
-PKG_NAMES="${NAME} ${NAME}-devel"
+PKG_NAMES="${NAME} ${NAME}-devel ${NAME}-indicator-plugin"
 lxpanel_REQUIRES="lxmenu-data"
-lxpanel_CONTENTS="etc/ usr/bin/ usr/lib/lxpanel/plugins/ usr/share/"
+lxpanel_CONTENTS="--exclude=indicator.* etc/ usr/bin/ usr/lib/lxpanel/plugins/ usr/share/"
 lxpanel_devel_CONTENTS="usr/include/ usr/lib/lxpanel/lib* usr/lib/pkgconfig/"
+lxpanel_indicator_plugin_SUMMARY="Indicator plugin for LXPanel"
+lxpanel_indicator_plugin_REQUIRES="indicator-application-gtk2"
+lxpanel_indicator_plugin_CONTENTS="usr/lib/lxpanel/plugins/indicator.dll"
 
 CYGCONF_ARGS="
+	--enable-indicator-support
 	--disable-alsa
 	--disable-libiw
-	--with-plugins=cpu,deskno,kbled,monitors,volume,weather,xkb
+	--with-plugins=cpu,deskno,indicator,kbled,monitors,volume,weather,xkb
 "

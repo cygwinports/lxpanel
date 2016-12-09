@@ -1,0 +1,114 @@
+--- origsrc/lxpanel-0.8.2/plugins/indicator/indicator.c	2016-02-20 16:26:48.000000000 -0600
++++ src/lxpanel-0.8.2/plugins/indicator/indicator.c	2016-12-05 01:03:28.051508700 -0600
+@@ -36,19 +36,25 @@ TODO : vertical support (r354)
+ #include <gtk/gtk.h>
+ #include <libindicator/indicator-object.h>
+ 
++#ifdef __CYGWIN__
++#define LIBSO(name) "cyg" name ".dll"
++#else
++#define LIBSO(name) "lib" name ".so"
++#endif
++
+ static gchar * indicator_order[][2] = {
+-  {"libappmenu.so", NULL},
+-  {"libapplication.so", NULL},
+-  {"libapplication.so", "gst-keyboard-xkb"},
+-  {"libmessaging.so", NULL},
+-  {"libpower.so", NULL},
+-  {"libapplication.so", "bluetooth-manager"},
+-  {"libnetwork.so", NULL},
+-  {"libnetworkmenu.so", NULL},
+-  {"libapplication.so", "nm-applet"},
+-  {"libsoundmenu.so", NULL},
+-  {"libdatetime.so", NULL},
+-  {"libsession.so", NULL},
++  {LIBSO("appmenu"), NULL},
++  {LIBSO("application"), NULL},
++  {LIBSO("application"), "gst-keyboard-xkb"},
++  {LIBSO("messaging"), NULL},
++  {LIBSO("power"), NULL},
++  {LIBSO("application"), "bluetooth-manager"},
++  {LIBSO("network"), NULL},
++  {LIBSO("networkmenu"), NULL},
++  {LIBSO("application"), "nm-applet"},
++  {LIBSO("soundmenu"), NULL},
++  {LIBSO("datetime"), NULL},
++  {LIBSO("session"), NULL},
+   {NULL, NULL}
+ };
+ 
+@@ -639,43 +645,43 @@ static void indicator_load_modules(LXPan
+         while ((name = g_dir_read_name(dir)) != NULL)
+         {
+ 
+-            if (g_strcmp0(name, "libsession.so")== 0) {
++            if (g_strcmp0(name, LIBSO("session"))== 0) {
+                 if (indicator->session == 1){
+                     load_module(name, indicator->menubar);
+                     indicators_loaded++;
+                 }
+             }
+-            else if (g_strcmp0(name, "libapplication.so")== 0) {
++            else if (g_strcmp0(name, LIBSO("application"))== 0) {
+                 if (indicator->applications == 1){
+                     load_module(name, indicator->menubar);
+                     indicators_loaded++;
+                 }
+             }
+-            else if (g_strcmp0(name, "libdatetime.so")== 0) {
++            else if (g_strcmp0(name, LIBSO("datetime"))== 0) {
+                 if (indicator->datetime == 1) {
+                     load_module(name, indicator->menubar);
+                     indicators_loaded++;
+                 }
+             }
+-            else if (g_strcmp0(name, "libmessaging.so")== 0) {
++            else if (g_strcmp0(name, LIBSO("messaging"))== 0) {
+                 if (indicator->messages == 1) {
+                     load_module(name, indicator->menubar);
+                     indicators_loaded++;
+                 }
+             }
+-            else if (g_strcmp0(name, "libnetworkmenu.so")== 0) {
++            else if (g_strcmp0(name, LIBSO("networkmenu"))== 0) {
+                 if (indicator->network == 1) {
+                     load_module(name, indicator->menubar);
+                     indicators_loaded++;
+                 }
+             }
+-            else if (g_strcmp0(name, "libsoundmenu.so")== 0) {
++            else if (g_strcmp0(name, LIBSO("soundmenu"))== 0) {
+                 if (indicator->sound == 1) {
+                     load_module(name, indicator->menubar);
+                     indicators_loaded++;
+                 }
+             }
+-            /* else if (g_strcmp0(name, "libappmenu.so") == 0) {
++            /* else if (g_strcmp0(name, LIBSO("appmenu")) == 0) {
+                 if (indicator->appmenu == 1) {
+                     load_module(name, indicator->menubar);
+                     indicators_loaded++;
+--- origsrc/lxpanel-0.8.2/src/plugin.c	2015-07-14 04:07:22.000000000 -0500
++++ src/lxpanel-0.8.2/src/plugin.c	2016-12-05 01:03:24.142728300 -0600
+@@ -131,7 +131,7 @@ static void plugin_load_dynamic(const ch
+         || (strcmp(type, pc->type) != 0))			/* Then and only then access other fields; check name */
+         {
+             g_module_close(m);
+-            g_warning("%s.so is not a lxpanel plugin", type);
++            g_warning("%s.%s is not a lxpanel plugin", type, G_MODULE_SUFFIX);
+             return;
+         }
+ 
+@@ -166,9 +166,9 @@ static void plugin_get_available_classes
+         const char * file;
+         while ((file = g_dir_read_name(dir)) != NULL)
+         {
+-            if (g_str_has_suffix(file, ".so"))
++            if (g_str_has_suffix(file, "." G_MODULE_SUFFIX))
+             {
+-                char * type = g_strndup(file, strlen(file) - 3);
++                char * type = g_strndup(file, strlen(file) - strlen("." G_MODULE_SUFFIX));
+                 if (_find_plugin(type) == NULL)
+                 {
+                     /* If it has not been loaded, do it.  If successful, add it to the result. */
